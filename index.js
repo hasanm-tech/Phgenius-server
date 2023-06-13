@@ -40,6 +40,8 @@ async function run() {
         res.send(result)
     })
 
+    //for all classes
+
     app.get('/all-classes', async (req,res) => {
       const email = req.query.email;
         console.log({email})
@@ -66,7 +68,7 @@ async function run() {
       res.send(result)
   })
 
-  // add classes for instructor 
+  // add classes for instructors
 
   app.get('/add-classes', async (req,res) => {
     const email = req.query.email;
