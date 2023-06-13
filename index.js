@@ -31,6 +31,7 @@ async function run() {
 
     const classCollection = client.db("photoDB").collection('classes');
     const allClassCollection = client.db("photoDB").collection('all-classes');
+    const addClassCollection = client.db("photoDB").collection('add-classes');
 
     
     // classes 
@@ -58,13 +59,32 @@ async function run() {
         res.send(result)
     })
 
-
     app.delete('/all-classes/:id', async (req,res) => {
       const id = req.params.id;
       const query = { _id: new ObjectId(id) };
       const result = await allClassCollection.deleteOne(query)
       res.send(result)
   })
+
+  // add classes for instructor 
+
+  app.get('/add-classes', async (req,res) => {
+    const email = req.query.email;
+      console.log({email})
+      if(!email){
+          res.send([])
+      }
+      const query = {email : email}
+      const result = await addClassCollection.find(query).toArray()
+      res.send(result)
+  })
+
+  app.post('/add-classes', async (req,res) => {
+    const item = req.body;
+    console.log(item)
+    const result = await addClassCollection.insertOne(item)
+    res.send(result)
+})
 
 
 
