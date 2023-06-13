@@ -30,16 +30,27 @@ async function run() {
     await client.connect();
     // Send a ping to confirm a successful connection
 
-    const menuCollection = client.db("photoDB").collection('classes');
+    const classCollection = client.db("photoDB").collection('classes');
+    const allClassCollection = client.db("photoDB").collection('all-classes');
 
     
     // classes 
     app.get('/classes', async (req,res) => {
-        const result = await menuCollection.find().toArray()
+        const result = await classCollection.find().toArray()
         res.send(result)
     })
 
+    app.get('/all-classes', async (req,res) => {
+        const result = await classCollection.find().toArray()
+        res.send(result)
+    })
 
+    app.post('/all-classes', async (req,res) => {
+        const item = req.body;
+        console.log(item)
+        const result = await allClassCollection.insertOne(item)
+        res.send(result)
+    })
 
 
 
