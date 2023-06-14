@@ -38,7 +38,7 @@ async function run() {
     const usersCollection = client.db("photoDB").collection('users');
 
 
-
+//users 
 
 app.get('/users', async (req,res) => {
   const result = await usersCollection.find().toArray()
