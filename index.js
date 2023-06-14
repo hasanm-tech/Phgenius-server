@@ -29,18 +29,21 @@ async function run() {
     await client.connect();
     // Send a ping to confirm a successful connection
 
+
+    //collections
+
     const classCollection = client.db("photoDB").collection('classes');
     const allClassCollection = client.db("photoDB").collection('all-classes');
     const addClassCollection = client.db("photoDB").collection('add-classes');
 
     
-    // classes 
+    // classes  data getting 
     app.get('/classes', async (req,res) => {
         const result = await classCollection.find().toArray()
         res.send(result)
     })
 
-    //for all classes
+    //for getting  all classes 
 
     app.get('/all-classes', async (req,res) => {
       const email = req.query.email;
