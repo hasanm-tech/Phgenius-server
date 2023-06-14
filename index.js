@@ -35,6 +35,17 @@ async function run() {
     const classCollection = client.db("photoDB").collection('classes');
     const allClassCollection = client.db("photoDB").collection('all-classes');
     const addClassCollection = client.db("photoDB").collection('add-classes');
+    const usersCollection = client.db("photoDB").collection('users');
+
+
+// for Users 
+
+app.get('/users', async (req,res) => {
+  const result = await usersCollection.find().toArray()
+  res.send(result)
+})
+
+
 
     
     // classes  data getting 
