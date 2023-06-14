@@ -4,7 +4,7 @@ const cors = require('cors')
 require('dotenv').config()
 const port = process.env.PORT || 5000;
 
-// middleware 
+// middleware  
 app.use(cors())
 app.use(express.json())
 
@@ -108,9 +108,9 @@ run().catch(console.dir);
 
 
 app.get('/', (req, res) => {
-  res.send('panda is running ')
+  res.send('Photogenius is running ')
 })
 
 app.listen(port, () => {
-  console.log(`panda app listening on port ${port}`)
+  console.log(`Photogenius app listening on port ${port}`)
 })
