@@ -38,13 +38,31 @@ async function run() {
     const usersCollection = client.db("photoDB").collection('users');
 
 
-// for Users 
+
 
 app.get('/users', async (req,res) => {
   const result = await usersCollection.find().toArray()
   res.send(result)
 })
 
+app.post('/users', async(req,res) => {
+  const user = req.body;
+
+  console.log({user})
+  const query = {email : user.email}
+  console.log({query})
+
+  const existingUser = await usersCollection.findOne(query);
+  console.log({existingUser})
+
+  if(existingUser){
+    return res.send({message : 'user already exits'})
+  } else{
+    const result = await usersCollection.insertOne(user);
+    res.send(result)
+  }
+  
+})
 
 
     
